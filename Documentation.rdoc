@@ -12,18 +12,14 @@ This document is part of the distribution for the activerecord-postgis-adapter g
 
 === General Installation Considerations
 
-Generally, we recommend starting with the latest versions of Ruby, Rails, PostgreSQL, and PostGIS. As of this writing, those are Ruby 2.0.0, Rails 3.2, PostgreSQL 9.2, and PostGIS 2.0. If you cannot upgrade, the minimum supported configuration is the following:
+Generally, we recommend starting with the latest versions of Ruby, Rails, PostgreSQL, and PostGIS. As of this writing, those are Ruby 2.1.0, Rails 4.0, PostgreSQL 9.3, and PostGIS 2.1. If you cannot upgrade, the minimum supported configuration is the following:
 
-* Ruby 1.8.7
-* Rails 3.0.3
-* PostgreSQL 9.0
-* PostGIS 1.5
+* Ruby 2.0.0
+* Rails 4.0.2
+* PostgreSQL 9.1
+* PostGIS 2.0
 
 However, older software versions can make for a more involved setup process, so we recommend using the latest available if possible.
-
-As of this writing, Rails 4.0.0 release candidate 1 has just been released. This version of activerecord-postgis-adapter does support Rails 4, but because the software is still pre-release, the usual caveats apply. If you are running Rails 4, you must be on the release candidate or later; the beta 1 release is not supported.
-
-JRuby and the JDBC Postgres Adapter is supported. But, as of this writing, the JDBC adapters themselves are not yet compatible with Rails 4.
 
 === Creating a Spatial Rails App
 
@@ -293,30 +289,4 @@ Note that bounding box queries make sense only in a projected coordinate system;
 
 == License
 
-Copyright 2010-2013 Daniel Azuma
-
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
-
-* Redistributions of source code must retain the above copyright notice,
-  this list of conditions and the following disclaimer.
-* Redistributions in binary form must reproduce the above copyright notice,
-  this list of conditions and the following disclaimer in the documentation
-  and/or other materials provided with the distribution.
-* Neither the name of the copyright holder, nor the names of any other
-  contributors to this software, may be used to endorse or promote products
-  derived from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
-LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-POSSIBILITY OF SUCH DAMAGE.
+https://github.com/neighborland/activerecord-postgis-adapter/LICENSE.txt

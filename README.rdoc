@@ -2,6 +2,8 @@
 
 The activerecord-postgis-adapter is a plugin that provides access to features of the PostGIS geospatial database from \ActiveRecord. Technically, it extends the standard postgresql adapter to provide support for the spatial data types and features added by the PostGIS extension. It uses the {RGeo}[http://github.com/dazuma/rgeo] library to represent spatial data in Ruby.
 
+Original project: https://github.com/dazuma/activerecord-postgis-adapter/
+
 == About the PostGIS Adapter
 
 This is a brief summary covering how to use activerecord-postgis-adapter. For full documentation, see Documentation.rdoc.
@@ -20,13 +22,11 @@ Third, it lets you include simple spatial data in queries. WKT format data and R
 
 The adapter has the following requirements.
 
-* Ruby 1.8.7 or later. Ruby 1.9.2 or later preferred. JRuby 1.6.3 or later also supported.
+* Ruby 2.0.0 or later.
 * PostgreSQL 9.0 or later.
-* PostGIS 1.5, PostGIS 2.0, or later.
-* \ActiveRecord 3.0.3 or later. Earlier versions will not work. Rails 4.0 is supported on an experimental basis.
-* The rgeo and rgeo-activerecord gems are also required.
-
-As of this writing, the design of the JDBC Postgres driver for Rails 4 still appears to be in flux. Accordingly, I'm holding off on supporting Rails 4 on JRuby for now. Similarly, Rubinius receives limited testing and support.
+* PostGIS 2.0, or later.
+* ActiveRecord 4.0.2 or later.
+* rgeo and rgeo-activerecord.
 
 === Installation and Configuration
 
@@ -45,6 +45,8 @@ Please note that this adapter uses the rgeo gem, which may have additional depen
 Once you have installed the adapter, you'll need to edit your config/database.yml to call for it. At minimum, this means changing the adapter name from "postgresql" to "postgis". It may also require other settings to ensure that other functions (such as rake test) continue to work as expected. We recommend reading the Configuration section in the Documentation.rdoc file carefully before starting to use this adapter.
 
 == Development and Support
+
+Original project info:
 
 \Documentation is available at http://dazuma.github.com/activerecord-postgis-adapter/rdoc
 
@@ -72,30 +74,5 @@ source gave us a head start on the implementation.
 
 == License
 
-Copyright 2010-2013 Daniel Azuma
+https://github.com/neighborland/activerecord-postgis-adapter/LICENSE.txt
 
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
-
-* Redistributions of source code must retain the above copyright notice,
-  this list of conditions and the following disclaimer.
-* Redistributions in binary form must reproduce the above copyright notice,
-  this list of conditions and the following disclaimer in the documentation
-  and/or other materials provided with the distribution.
-* Neither the name of the copyright holder, nor the names of any other
-  contributors to this software, may be used to endorse or promote products
-  derived from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
-LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-POSSIBILITY OF SUCH DAMAGE.
