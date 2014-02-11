@@ -9,7 +9,7 @@ require './lib/active_record/connection_adapters/postgis_adapter/version.rb'
   s_.email = 'dazuma@gmail.com'
   s_.homepage = "http://dazuma.github.com/activerecord-postgis-adapter"
   s_.licenses = ['BSD']
-  s_.required_ruby_version = '>= 2.0.0'
+  
   s_.files = ::Dir.glob("lib/**/*.{rb,rake}") +
     ::Dir.glob("test/**/*.rb") +
     ::Dir.glob("*.rdoc") +
@@ -17,6 +17,10 @@ require './lib/active_record/connection_adapters/postgis_adapter/version.rb'
   s_.extra_rdoc_files = ::Dir.glob("*.rdoc")
   s_.test_files = ::Dir.glob("test/**/tc_*.rb")
   s_.platform = ::Gem::Platform::RUBY
+  
+  s_.required_ruby_version = '>= 2.0.0'
+  
+  s_.add_dependency('activerecord', '~> 4.0.2')
   s_.add_dependency('rgeo-activerecord', '~> 0.5.0')
 
   s_.add_development_dependency('rake')
