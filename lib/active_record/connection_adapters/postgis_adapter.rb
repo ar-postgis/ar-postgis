@@ -1,4 +1,4 @@
-# The activerecord-postgis-adapter gem installs the *postgis*
+# The ar-postgis gem installs the *postgis*
 # connection adapter into ActiveRecord.
 
 module ActiveRecord

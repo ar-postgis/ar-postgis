@@ -6,7 +6,7 @@ This document provides basic how-to information that should help get you started
 * How to set up and configure spatial columns and tables.
 * How to read, write, and query spatial data.
 
-This document is part of the distribution for the activerecord-postgis-adapter gem. For more information, please visit http://dazuma.github.com/activerecord-postgis-adapter.
+This document is part of the distribution for the ar-postgis gem. For more information, please visit http://dazuma.github.com/activerecord-postgis-adapter.
 
 == Installation and Configuration
 
@@ -25,13 +25,13 @@ However, older software versions can make for a more involved setup process, so 
 
 This section covers starting a new Rails application from scratch. If you need to add geospatial capabilities to an existing Rails application (i.e. you need to convert a non-spatial database to a spatial database), see the section on "Upgrading a Database With Spatial Features" below.
 
-To create a new Rails application using activerecord-postgis-adapter, start by using the postgresql adapter.
+To create a new Rails application using ar-postgis, start by using the postgresql adapter.
 
   rails new my_app --database=postgresql
 
-Next, add the activerecord-postgis-adapter gem to the Gemfile as follows:
+Next, add the ar-postgis gem to the Gemfile as follows:
 
-  gem 'activerecord-postgis-adapter'
+  gem 'ar-postgis'
 
 We also recommend including the "squeel" gem, which comes in very useful for writing spatial queries. Then run <code>bundle install</code> to complete your bundle.
 
@@ -55,7 +55,7 @@ For more information, see the PostGIS documentation, or any relevant documentati
 
 If you have an existing Rails app and an existing database that uses Postgres, and you want to add geospatial features, you should follow these steps.
 
-First, add the activerecord-postgis-adapter gem to the Gemfile, and update your bundle by running <code>bundle install</code>.
+First, add the ar-postgis gem to the Gemfile, and update your bundle by running <code>bundle install</code>.
 
 Next, modify your <code>config/database.yml</code> file to invoke the postgis adapter, as described above. At minimum, you will need to change the <code>adapter</code> field from "postgresql" to "postgis".
 
@@ -119,7 +119,7 @@ A spatial database is one that includes a set of data types, functions, tables, 
 
 PostGIS is a plugin for PostgreSQL that provides definitions for the objects you need to add to a database to enable geospatial capabilities.
 
-When you create your Rails database as described above in the section on installation and configuration, activerecord-postgis-adapter automatically invokes PostGIS to add the appropriate definitions to your database. You can determine whether your database includes the correct definitions by attempting to invoke the POSTGIS_VERSION function:
+When you create your Rails database as described above in the section on installation and configuration, ar-postgis automatically invokes PostGIS to add the appropriate definitions to your database. You can determine whether your database includes the correct definitions by attempting to invoke the POSTGIS_VERSION function:
 
   SELECT POSTGIS_VERSION();   # succeeds if PostGIS objects are present.
 
@@ -129,7 +129,7 @@ Standard spatial databases also include a table called <code>spatial_ref_sys</co
 
 To store spatial data, you must create a column with a spatial type. PostGIS provides a variety of spatial types, including point, linestring, polygon, and different kinds of collections. These types are defined in a standard produced by the Open Geospatial Consortium. Furthermore, you can specify options indicating the coordinate system and number of coordinates for the values you are storing.
 
-The activerecord-postgis-adapter extends \ActiveRecord's migration syntax to support these spatial types. The following example creates four spatial columns in a table:
+The ar-postgis extends \ActiveRecord's migration syntax to support these spatial types. The following example creates four spatial columns in a table:
 
   create_table :my_spatial_table do |t|
     t.column :shape1, :geometry
@@ -147,7 +147,7 @@ The fourth column, "lonlat", has the <code>point</code> type, and accepts only P
 
 The fifth column, "lonlatheight", is a geographic (longitude/latitude) point that also includes a third "z" coordinate that can be used to store height information.
 
-The following are the data types understood by PostGIS and exposed by activerecord-postgis-adapter:
+The following are the data types understood by PostGIS and exposed by ar-postgis:
 
 * <tt>:geometry</tt> -- Any geometric type
 * <tt>:point</tt> -- Point data
@@ -173,7 +173,7 @@ The adapter also extends the \ActiveRecord migration syntax for creating spatial
 
 === Configuring the \ActiveRecord class
 
-\ActiveRecord's usefulness stems from the way it automatically configures classes based on the database structure and schema. If a column in the database has an integer type, \ActiveRecord automatically casts the data to a Ruby Integer. In the same way, the activerecord-postgis-adapter automatically casts spatial data to a corresponding RGeo data type.
+\ActiveRecord's usefulness stems from the way it automatically configures classes based on the database structure and schema. If a column in the database has an integer type, \ActiveRecord automatically casts the data to a Ruby Integer. In the same way, the ar-postgis automatically casts spatial data to a corresponding RGeo data type.
 
 However, RGeo offers more "flexibility" in its type system than can be interpreted solely from analyzing the database column. For example, you can configure RGeo objects to exhibit certain behaviors related to their serialization, validation, coordinate system, or computation. These settings are embodied in the RGeo "factory" associated with the object.
 
@@ -198,7 +198,7 @@ Here are some examples, given the spatial table defined above:
     
   end
 
-The <code>rgeo_factory_generator</code> attribute and <code>set_rgeo_factory_for_column</code> method are actually implemented (and documented) in the "rgeo-activerecord" gem, which is a dependency of the activerecord-postgis-adapter.
+The <code>rgeo_factory_generator</code> attribute and <code>set_rgeo_factory_for_column</code> method are actually implemented (and documented) in the "rgeo-activerecord" gem, which is a dependency of the ar-postgis.
 
 === Schema Dump and Reload
 
@@ -206,7 +206,7 @@ The presence of geospatial data in a database causes some issues with \ActiveRec
 
 Because of this, we recommend the following.
 
-* Install the PostGIS definitions in a separate schema called "postgis" (as described in the recommended installation procedure above). The activerecord-postgis-adapter will ignore a schema called "postgis" when dumping the schema, thus omitting the clutter.
+* Install the PostGIS definitions in a separate schema called "postgis" (as described in the recommended installation procedure above). The ar-postgis will ignore a schema called "postgis" when dumping the schema, thus omitting the clutter.
 
 * Set the \ActiveRecord schema format to <code>:ruby</code>, _not_ <code>:sql</code>. The former emits higher level commands that can be interpreted correctly to reproduce the schema. The latter, however, emits low level SQL, which loses information such as the fact that AddGeometryColumn() was originally used to generate a column. Executing a <code>:sql</code> format schema dump will _not_ correctly reproduce the schema.
 
@@ -231,7 +231,7 @@ The RGeo factory for the value is determined by how you configured the \ActiveRe
 
   factory = p.factory                # returns a spherical factory
 
-You can set a spatial attribute by providing an RGeo geometry object, or by providing the WKT string representation of the geometry. If a string is provided, the activerecord-postgis-adapter will attempt to parse it as WKT and set the value accordingly.
+You can set a spatial attribute by providing an RGeo geometry object, or by providing the WKT string representation of the geometry. If a string is provided, the ar-postgis will attempt to parse it as WKT and set the value accordingly.
 
   record.lonlat = 'POINT(-122, 47)'  # sets the value to the given point
 
@@ -239,7 +239,7 @@ If the WKT parsing fails, the value currently will be silently set to nil. In th
 
   record.lonlat = 'POINT(x)'         # sets the value to nil
 
-If you set the value to an RGeo object, the factory needs to match the factory for the attribute. If the factories do not match, activerecord-postgis-adapter will attempt to cast the value to the correct factory.
+If you set the value to an RGeo object, the factory needs to match the factory for the attribute. If the factories do not match, ar-postgis will attempt to cast the value to the correct factory.
 
   p2 = factory.point(-122, 47)       # p2 is a point in a spherical factory
   record.lonlat = p2                 # sets the value to the given point
@@ -289,4 +289,4 @@ Note that bounding box queries make sense only in a projected coordinate system;
 
 == License
 
-https://github.com/neighborland/activerecord-postgis-adapter/LICENSE.txt
+https://github.com/ar-postgis/ar-postgis/LICENSE.txt
