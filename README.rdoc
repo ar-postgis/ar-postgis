@@ -1,77 +1,14 @@
-== PostGIS \ActiveRecord Adapter
+= This fork is obsolete!
+= Please use activerecord-postgis-adapter
 
-The ar-postgis gem provides access to features of the PostGIS geospatial database from \ActiveRecord.
-Technically, it extends the standard postgresql adapter to provide support for the spatial data types and features
-added by the PostGIS extension. It uses the {RGeo}[http://github.com/dazuma/rgeo] library to represent spatial data
-in Ruby.
+https://github.com/rgeo/activerecord-postgis-adapter
 
-Original project: https://github.com/dazuma/activerecord-postgis-adapter/
+==== All the changes in this fork have been incorporated into the activerecord-postgis-adapter gem.
 
-For full documentation, see Documentation.rdoc.
+Rails 4.0.x:
 
-=== Features
+    gem 'activerecord-postgis-adapter', '~> 0.7.1'
 
-The adapter provides three basic capabilities:
+Rails 4.1.x:
 
-First, it provides *spatial migrations*. It extends the \ActiveRecord migration syntax to support creating
-spatially-typed columns and spatial indexes. You can control the various PostGIS-provided attributes such as srid,
-dimension, and geographic vs geometric math.
-
-Second, it recognizes spatial types and casts them properly to RGeo geometry objects. The adapter can configure these
-objects automatically based on the srid and dimension in the database table, or you can tell it to convert the data to
-a different form. You can also set attribute data using WKT format.
-
-Third, it lets you include simple spatial data in queries. WKT format data and RGeo objects can be embedded in where
-clauses. If you include the Squeel gem, the adapter also supports advanced queries utilizing the standard SQL spatial
-function set.
-
-=== Requirements
-
-The adapter has the following requirements.
-
-* Ruby 2.0.0 or later.
-* PostgreSQL 9.0 or later.
-* PostGIS 2.0 or later.
-* ActiveRecord 4.0.2 or later.
-* rgeo and rgeo-ar.
-
-=== Install
-
-Add it to your Gemfile:
-
-  gem 'ar-postgis'
-
-or install it as a gem:
-
-  gem install ar-postgis
-
-Please note that this adapter uses the rgeo gem, which may have additional dependencies. Please see the \README
-documentation for rgeo for more information.
-
-Once you have installed the adapter, you'll need to edit your config/database.yml to call for it. At minimum, this
-means changing the adapter name from "postgresql" to "postgis". It may also require other settings to ensure that
-other functions (such as rake test) continue to work as expected. We recommend reading the Configuration section
-in the Documentation.rdoc file carefully before starting to use this adapter.
-
-== Development and Support
-
-Original project info:
-
-\Documentation is available at http://dazuma.github.com/activerecord-postgis-adapter/rdoc
-
-Support available on the rgeo-users google group at http://groups.google.com/group/rgeo-users
-
-== Acknowledgments
-
-The PostGIS Adapter and its supporting libraries (including RGeo) were originally
-written by Daniel Azuma (http://www.daniel-azuma.com).
-
-Development was supported by Pirq. (http://pirq.com).
-
-This adapter implementation owes some debt to the spatial_adapter plugin
-(http://github.com/fragility/spatial_adapter).
-
-== License
-
-https://github.com/neighborland/activerecord-postgis-adapter/LICENSE.txt
-
+    gem 'activerecord-postgis-adapter', '~> 1.0'
