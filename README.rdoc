@@ -5,10 +5,6 @@ https://github.com/rgeo/activerecord-postgis-adapter
 
 ==== All the changes in this fork have been incorporated into the activerecord-postgis-adapter gem.
 
-Rails 4.0.x:
+Rails 4.x:
 
-    gem 'activerecord-postgis-adapter', '~> 0.7.1'
-
-Rails 4.1.x:
-
-    gem 'activerecord-postgis-adapter', '~> 1.0'
+    gem 'activerecord-postgis-adapter'
